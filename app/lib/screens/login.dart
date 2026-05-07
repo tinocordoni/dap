@@ -9,25 +9,25 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  String appTitle = "CruzAR";
 
-String appTitle = "CruzAR";
+  String loginUsername = "Tino";
+  String loginPassword = "Helado";
 
-String loginUsername = "Tino";
-String loginPassword = "Helado";
+  String username = "";
+  String password = "";
 
-String username = "";
-String password = "";
+  bool obscurePassword = true;
 
-bool obscurePassword = true;
+  String informar = "Ingrese su usuario y contraseña";
 
-String informar = "Ingrese su usuario y contraseña";
-
-TextEditingController usernameController = TextEditingController();
-TextEditingController passwordController = TextEditingController();
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: Scaffold(
+    return MaterialApp(
+      home: Scaffold(
         body: Builder(
           builder: (context) => Center(
             child: Column(
@@ -39,11 +39,13 @@ TextEditingController passwordController = TextEditingController();
                   style: TextStyle(fontSize: 50, color: Colors.blueGrey),
                 ),
                 SizedBox(height: 100),
-                TextField(controller: usernameController),
+                SizedBox( width: 500, child: TextField(controller: usernameController)),
                 SizedBox(height: 20),
-                TextField(
-                  controller: passwordController,
-                  obscureText: obscurePassword,
+                SizedBox(width: 500,
+                  child: TextField(
+                    controller: passwordController,
+                    obscureText: obscurePassword,
+                  ),
                 ),
                 SizedBox(height: 20),
                 ElevatedButton(
@@ -54,8 +56,8 @@ TextEditingController passwordController = TextEditingController();
                       informar = "Llene ambos campos";
                     } else if (username == loginUsername &&
                         password == loginPassword) {
-                        informar = "Puede ingresar";
-                        context.push("/home");
+                      informar = "Puede ingresar";
+                      context.go("/home");
                     } else {
                       informar = "Las credenciales no son correctas";
                     }
