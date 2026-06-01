@@ -13,7 +13,7 @@ class _LoginScreenState extends State<LoginScreen> {
   String appTitle = "CruzAR";
 
   UserInfo usuario = UserInfo(
-    mail: "Tino@gmail.com",
+    mail: "tino@gmail.com",
     password: "Helado",
     name: "Santino",
     surname: "Cordoni",
@@ -43,7 +43,13 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(height: 100),
                 SizedBox(
                   width: 500,
-                  child: TextField(controller: mailController),
+                  child: TextField(
+                    controller: mailController,
+                    decoration: InputDecoration(
+                      labelText: "Mail",
+                      border: OutlineInputBorder(),
+                    ),
+                  ),
                 ),
                 SizedBox(height: 20),
                 SizedBox(
@@ -51,6 +57,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: TextField(
                     controller: passwordController,
                     obscureText: obscurePassword,
+                    decoration: InputDecoration(
+                      labelText: "Contraseña",
+                      border: OutlineInputBorder(),
+                    ),
                   ),
                 ),
                 SizedBox(height: 20),
@@ -60,7 +70,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     final password = passwordController.text;
                     if (mail.isEmpty || password.isEmpty) {
                       informar = "Llene ambos campos";
-                    } else if (mail == usuario.mail && password == usuario.password) {
+                    } else if (mail == usuario.mail &&
+                        password == usuario.password) {
                       informar = "Puede ingresar";
                       context.go("/home", extra: usuario.name);
                     } else {
