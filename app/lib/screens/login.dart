@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import '/clases/class_user_info.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -11,17 +12,18 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   String appTitle = "CruzAR";
 
-  String loginUsername = "Tino";
-  String loginPassword = "Helado";
-
-  String username = "";
-  String password = "";
+  UserInfo usuario = UserInfo(
+    mail: "Tino@gmail.com",
+    password: "Helado",
+    name: "Santino",
+    surname: "Cordoni",
+  );
 
   bool obscurePassword = true;
 
   String informar = "Ingrese su usuario y contraseña";
 
-  TextEditingController usernameController = TextEditingController();
+  TextEditingController mailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
   @override
@@ -39,9 +41,13 @@ class _LoginScreenState extends State<LoginScreen> {
                   style: TextStyle(fontSize: 50, color: Colors.blueGrey),
                 ),
                 SizedBox(height: 100),
-                SizedBox( width: 500, child: TextField(controller: usernameController)),
+                SizedBox(
+                  width: 500,
+                  child: TextField(controller: mailController),
+                ),
                 SizedBox(height: 20),
-                SizedBox(width: 500,
+                SizedBox(
+                  width: 500,
                   child: TextField(
                     controller: passwordController,
                     obscureText: obscurePassword,
@@ -50,14 +56,13 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: () {
-                    username = usernameController.text;
-                    password = passwordController.text;
-                    if (username.isEmpty || password.isEmpty) {
+                    final mail = mailController.text;
+                    final password = passwordController.text;
+                    if (mail.isEmpty || password.isEmpty) {
                       informar = "Llene ambos campos";
-                    } else if (username == loginUsername &&
-                        password == loginPassword) {
+                    } else if (mail == usuario.mail && password == usuario.password) {
                       informar = "Puede ingresar";
-                      context.go("/home");
+                      context.go("/home", extra: usuario.name);
                     } else {
                       informar = "Las credenciales no son correctas";
                     }
