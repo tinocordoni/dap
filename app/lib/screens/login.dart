@@ -73,7 +73,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     } else if (mail == usuario.mail &&
                         password == usuario.password) {
                       informar = "Puede ingresar";
-                      context.go("/home", extra: usuario.name);
+                      context.go("/home", extra: usuario);
                     } else {
                       informar = "Las credenciales no son correctas";
                     }

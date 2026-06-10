@@ -28,6 +28,11 @@ late int mostQuantityNum;
 late int leastQuantityNum;
 late double avgPrice;
 
+String mostExpensiveDesc = "";
+String cheapestDesc = "";
+String mostQuantityDesc = "";
+String leastQuantityDesc = "";
+
 int numberOfItems = 0;
 double totalPriceOfItems = 0;
 
@@ -154,21 +159,25 @@ class _HomeScreenState extends State<HomeScreen> {
                               //caro
                               mostExpensiveNum = product.price;
                               mostExpensiveName = product.name;
+                              mostExpensiveDesc = product.description;
                             }
                             //barato
                             if (product.price < cheapestNum) {
                               cheapestNum = product.price;
                               cheapestName = product.name;
+                              cheapestDesc = product.description;
                             }
                             //mayor cantidad
                             if (product.quantity > mostQuantityNum) {
                               mostQuantityNum = product.quantity;
                               mostQuantityName = product.name;
+                              mostQuantityDesc = product.description;
                             }
                             //menor cantidad
                             if (product.quantity < leastQuantityNum) {
                               leastQuantityNum = product.quantity;
                               leastQuantityName = product.name;
+                              leastQuantityDesc = product.description;
                             }
                           }
 
